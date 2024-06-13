@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 몬티 홀 문제 시뮬레이션 레포지토리
 
-## Getting Started
+이 레포지토리는 유명한 확률 문제인 몬티 홀 문제(Monty Hall Problem)를 TypeScript와 Next.js를 사용하여 시뮬레이션하고 결과를 분석하는 프로젝트입니다. 이 시뮬레이션을 통해 몬티 홀 문제의 직관적인 이해를 돕고, 수학적 확률을 체험해 볼 수 있습니다.
 
-First, run the development server:
+# 왜 만들었나요?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+유튜브를 보던 중 몬티 홀 문제를 과거 드라마, 책에서도 본적이 있었음에도 매번 관련 설명을 들으면 머리로는 이해되는데 뭔가 늘 찜찜해서 직접 해보면서 결과를 보고 싶어 만들게 되었습니다.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 몬티 홀 문제 정의
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+몬티 홀 문제는 다음과 같이 정의됩니다:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. 당신은 세 개의 문 중 하나를 선택합니다. 하나의 문 뒤에는 자동차가 있고, 나머지 두 개의 문 뒤에는 염소가 있습니다.
+2. 당신이 문을 선택하면, 진행자인 몬티 홀은 당신이 선택하지 않은 두 개의 문 중 염소가 있는 문 하나를 열어 보여줍니다.
+3. 이제 당신은 처음 선택한 문을 고수할지 아니면 다른 닫힌 문으로 선택을 바꿀지 결정해야 합니다.
 
-## Learn More
+이 문제에서 많은 사람들이 직관적으로 처음 선택을 고수하는 것이나, 선택을 바꾸는 것에 대한 확률을 제대로 이해하지 못합니다. 실제로는 선택을 바꾸는 것이 자동차를 탈 확률을 1/3에서 2/3로 증가시킵니다.
 
-To learn more about Next.js, take a look at the following resources:
+## 프로젝트 요구사항
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+이 프로젝트에서는 다음과 같은 기능을 구현합니다:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. **시뮬레이션 문의 개수**: 사용자가 시뮬레이션에서 몇 개의 문으로 실행할지 입력할 수 있어야 합니다.(정해진 개수 중 선택)
+2. **시뮬레이션 실행**: 사용자가 선택을 바꾸는 경우와 선택을 바꾸지 않는 경우 각각에 대해 시뮬레이션을 실행합니다.
+3. **결과 출력**: 두 가지 경우에 대해 시뮬레이션 결과를 보여줍니다.
+4. **결과 기록**: 사용자가 누적해 얻은 결과에 대해 정리해서 보여줍니다.
 
-## Deploy on Vercel
+## 설치 및 실행 방법
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+이 프로젝트는 TypeScript와 Next.js로 작성되었습니다. 다음의 단계를 따라 프로젝트를 설치하고 실행할 수 있습니다:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. **레포지토리 클론**
+    ```bash
+    git clone https://github.com/yourusername/monty-hall-simulation.git
+    cd monty-hall-simulation
+    ```
+
+2. **필요한 패키지 설치**
+    ```bash
+    npm install
+    ```
+
+3. **개발 서버 실행**
+    ```bash
+    npm run dev
+    ```
+
+4. 브라우저에서 [http://localhost:3000](http://localhost:3000)으로 이동하여 애플리케이션을 확인합니다.
