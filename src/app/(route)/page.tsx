@@ -3,9 +3,7 @@ import Welcome from "../components/start/Welcome";
 
 export default function Home() {
   return (
-    <main className="w-full h-full text-white">
-      <h1>프리텐다드 된거야?</h1>
-      <Welcome />
+    <main className="w-[1080px] min-h-screen text-white bg-[#CEAB93] px-6 py-6">
       <StartContainer />
     </main>
   );

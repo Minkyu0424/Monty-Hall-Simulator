@@ -1,12 +1,9 @@
-"use client";
-import { useCountStore } from "@/app/store/useCountStore";
+import Welcome from "./Welcome";
 
 const StartContainer = () => {
-  const { count, inc } = useCountStore();
   return (
-    <div>
-      <span>{count}</span>
-      <button onClick={inc}>one up</button>
+    <div className="flex justify-center ">
+      <Welcome />
     </div>
   );
 };

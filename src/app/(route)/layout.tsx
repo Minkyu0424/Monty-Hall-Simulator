@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="bg-black min-h-screen min-w-[800px] mx-auto">
+      <body className="bg-[#AD8B73] min-h-screen min-w-[750px] mx-auto flex items-center justify-center">
         {children}
       </body>
     </html>
