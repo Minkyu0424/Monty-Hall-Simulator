@@ -16,6 +16,15 @@ export default function Home() {
           />
         </div>
       </Link>
+      <div className="absolute bottom-6 right-6 cursor-pointer hover:animate-bounce">
+          <Image
+            src={"/mygoat.png"}
+            alt={"goat"}
+            width={360}
+            height={360}
+            color="black"
+          />
+        </div>
     </main>
   );
 }
