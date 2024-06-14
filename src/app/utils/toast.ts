@@ -10,7 +10,7 @@ const commonOptions: any = {
 }
 
 const readyAlert = () => {
-  toast.warning('아직 준비중이에요!', {
+  toast.warning('미안, 아직 준비중이에요!', {
     icon: () => '🚧',
     ...commonOptions,
   })
