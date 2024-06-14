@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import { Button } from "@nextui-org/button";
 import {
   Modal,
@@ -8,14 +8,15 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/modal";
-const RuleModal = () => {
+export default function App() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   return (
-    <>
-      <Button onPress={onOpen}>Open Modal</Button>
+    <div className="bg-white">
+      <Button onPress={onOpen}  color="primary">Open Modal</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
-          {(onClose) => (
+          {(onClose: any) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
                 Modal Title
@@ -52,8 +53,6 @@ const RuleModal = () => {
           )}
         </ModalContent>
       </Modal>
-    </>
+    </div>
   );
-};
-
-export default RuleModal;
+}
