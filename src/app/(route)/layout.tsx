@@ -1,3 +1,4 @@
+import { NextUIProvider } from "@nextui-org/system";
 import type { Metadata } from "next";
 import "../ui/globals.css";
 
@@ -17,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="bg-black min-h-screen min-w-[750px] mx-auto flex items-center justify-center">
-        {children}
+        <NextUIProvider>{children}</NextUIProvider>
       </body>
     </html>
   );

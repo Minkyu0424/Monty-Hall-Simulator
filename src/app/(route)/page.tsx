@@ -16,15 +16,17 @@ export default function Home() {
           />
         </div>
       </Link>
-      <div className="absolute bottom-6 right-6 cursor-pointer hover:animate-bounce">
-        <Image
-          src={"/mygoat.png"}
-          alt={"goat"}
-          width={360}
-          height={360}
-          color="black"
-        />
-      </div>
+      <Link href={"https://brilliant.org/wiki/monty-hall-problem/"}>
+        <div className="absolute bottom-6 right-6 cursor-pointer hover:animate-bounce">
+          <Image
+            src={"/mygoat.png"}
+            alt={"goat"}
+            width={160}
+            height={102}
+            color="black"
+          />
+        </div>
+      </Link>
     </main>
   );
 }
