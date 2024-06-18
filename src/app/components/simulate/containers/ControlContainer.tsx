@@ -2,7 +2,7 @@
 
 import { DOOR_COUNTS, SIM_COUNTS } from "@/app/constants/simulate";
 import { useSimulationStore } from "@/app/store/useStore";
-import { insertAlert } from "@/app/utils/toast";
+import { insertAlert, startAlert } from "@/app/utils/toast";
 import { Switch } from "@nextui-org/react";
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
@@ -21,12 +21,11 @@ const ControlContainer = () => {
   const isFilled =
     options.turns !== "" && options.doorAmount !== "" && options.user !== "";
 
-  console.log(options, "옵션여부");
-
   const startSimulate = () => {
     if (isFilled) {
       setIsStart(true);
       setOptions({ onlyResult: isSelected });
+      startAlert();
     } else {
       insertAlert();
     }
@@ -34,8 +33,8 @@ const ControlContainer = () => {
 
   const resetSimulate = () => {
     setIsStart(false);
-    setIsSelected(false)
-    resetOptions()
+    setIsSelected(false);
+    resetOptions();
   };
 
   return (

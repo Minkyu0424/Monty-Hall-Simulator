@@ -24,4 +24,11 @@ const insertAlert = () => {
   });
 };
 
-export { readyAlert, insertAlert };
+const startAlert = () => {
+  toast.success("문을 하나 골라 클릭해주세요", {
+    icon: () => "👆",
+    ...commonOptions,
+  });
+};
+
+export { insertAlert, readyAlert, startAlert };
