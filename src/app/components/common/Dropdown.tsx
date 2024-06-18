@@ -37,7 +37,7 @@ const DropDown = ({ options, title, onSelect }: DropDownProps) => {
   };
 
   return (
-    <div className="flex flex-col text-base font-bold">
+    <div className="flex flex-col text-base font-semibold">
       <div
         className="flex relative w-[280px] h-[45px] rounded-[10px] bg-white border-2 border-[#CEAB93] cursor-pointer"
         onClick={() => setIsOpen((prevState) => !prevState)}

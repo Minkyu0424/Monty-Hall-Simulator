@@ -1,12 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useSimulationStore } from "@/app/store/useStore";
 import EmptyDoors from "../EmptyDoors";
 
 const DoorsContainer = () => {
-  const isChecked = useState(false);
+  const isStart = useSimulationStore((state) => state.isStart);
 
-  return <div className="flex items-center justify-center">{isChecked ? <EmptyDoors /> : <EmptyDoors />}</div>;
+  return (
+    <div className="flex items-center justify-center">
+      {isStart ? <EmptyDoors /> : <EmptyDoors />}
+    </div>
+  );
 };
 
 export default DoorsContainer;
