@@ -10,6 +10,8 @@ export const OPTION_INIT = {
   isPause: false,
 };
 
-export const DOOR_SIZE_W = [210, 150, 120, 54];
+export const DOOR_SIZE_W = [210, 170, 120, 54];
 
-export const DOOR_SIZE_H = [350, 250, 200, 90];
+export const DOOR_SIZE_H = [350, 220, 200, 90];
+
+export const DOOR_AMOUNT = [3, 5, 10, 50];

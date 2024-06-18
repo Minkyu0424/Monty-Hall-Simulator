@@ -18,12 +18,8 @@ const Door = ({ doorSize, isOpen }: DoorProps) => {
   return (
     <div
       style={{ width: `${doorWidth}px`, height: `${doorHeight}px` }}
-      className={`flex relative bg-[#000000] hover:animate-wiggle rounded-xl items-center justify-center cursor-pointer shadow-xl`}
-    >
-      <div className="w-6 h-6 rounded-full flex items-center justify-center absolute top-[130px] right-4 bg-black">
-        <div className="w-2 h-2 rounded-full  bg-white"></div>
-      </div>
-    </div>
+      className={`flex relative bg-[#E3CAA5] hover:animate-wiggle rounded-xl items-center justify-center cursor-pointer shadow-xl`}
+    ></div>
   );
 };
 
