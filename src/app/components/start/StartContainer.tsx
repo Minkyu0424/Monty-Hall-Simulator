@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Door from "../common/Door";
 import GuideDoor from "../rule/GuideDoor";
 import Welcome from "./Welcome";
+import StartDoor from "./StartDoor";
 
 const StartContainer = () => {
   return (
@@ -12,10 +12,10 @@ const StartContainer = () => {
       <ToastContainer />
       <div className="flex gap-x-8 mt-20">
         <Link href={"/simulate"}>
-          <Door doorTitle={"시작"} />
+          <StartDoor doorTitle={"시작"} />
         </Link>
         <GuideDoor />
-        <Door doorTitle={"기록"} />
+        <StartDoor doorTitle={"기록"} />
       </div>
     </div>
   );

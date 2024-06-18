@@ -9,7 +9,7 @@ const DoorsContainer = () => {
 
   return (
     <div className="flex items-center justify-center">
-      {isStart ? <EmptyDoors /> : <SimulateContainer />}
+      {isStart ? <SimulateContainer /> : <EmptyDoors />}
     </div>
   );
 };
