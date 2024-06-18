@@ -17,6 +17,7 @@ const ControlContainer = () => {
   const setIsStart = useSimulationStore((state) => state.setIsStart);
   const options = useSimulationStore((state) => state.options);
   const setOptions = useSimulationStore((state) => state.setOptions);
+  const resetOptions = useSimulationStore((state) => state.reset);
   const isFilled =
     options.turns !== "" && options.doorAmount !== "" && options.user !== "";
 
@@ -25,6 +26,7 @@ const ControlContainer = () => {
   const startSimulate = () => {
     if (isFilled) {
       setIsStart(true);
+      setOptions({ onlyResult: isSelected });
     } else {
       insertAlert();
     }
@@ -32,56 +34,62 @@ const ControlContainer = () => {
 
   const resetSimulate = () => {
     setIsStart(false);
+    setIsSelected(false);
+    resetOptions();
   };
 
   return (
     <div className="w-full h-full flex items-center justify-center flex-col mt-10">
       <ToastContainer />
-      <div className="flex gap-x-8">
-        <div className="flex flex-col gap-y-6">
-          <DropDown
-            options={DOOR_COUNTS}
-            title={"시뮬레이션 문의 개수"}
-            onSelect={(option) =>
-              setOptions({
-                doorAmount: option,
-              })
-            }
-          />
-          <div className="bg-white w-[280px] h-12 rounded-2xl flex gap-x-6 items-center justify-center shadow-xl">
-            <p className="text-black text-lg font-semibold">결과만 보기</p>
-            <Switch
-              size="lg"
-              isSelected={isSelected}
-              onValueChange={setIsSelected}
-              className={`${
-                isSelected ? "bg-[#87b45a]" : "bg-[#a9a9a9]"
-              } rounded-2xl flex items-center justify-center`}
+      {isStart ? (
+        <div className="h-[160px]">지금은 직관 중.....</div>
+      ) : (
+        <div className="flex gap-x-8 h-[160px]">
+          <div className="flex flex-col gap-y-6">
+            <DropDown
+              options={DOOR_COUNTS}
+              title={"시뮬레이션 문의 개수"}
+              onSelect={(option) =>
+                setOptions({
+                  doorAmount: option,
+                })
+              }
+            />
+            <div className="bg-white w-[280px] h-12 rounded-2xl flex gap-x-6 items-center justify-center shadow-xl">
+              <p className="text-black text-lg font-semibold">결과만 보기</p>
+              <Switch
+                size="lg"
+                isSelected={isSelected}
+                onValueChange={setIsSelected}
+                className={`${
+                  isSelected ? "bg-[#87b45a]" : "bg-[#a9a9a9]"
+                } rounded-2xl flex items-center justify-center`}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col gap-y-6">
+            <DropDown
+              options={SIM_COUNTS}
+              title={"시뮬레이션 횟수"}
+              onSelect={(option) =>
+                setOptions({
+                  turns: option,
+                })
+              }
+            />
+            <Input
+              title={"사용자의 이름을 입력"}
+              onSubmit={(name) =>
+                setOptions({
+                  user: name,
+                })
+              }
             />
           </div>
         </div>
-        <div className="flex flex-col gap-y-6">
-          <DropDown
-            options={SIM_COUNTS}
-            title={"시뮬레이션 횟수"}
-            onSelect={(option) =>
-              setOptions({
-                turns: option,
-              })
-            }
-          />
-          <Input
-            title={"사용자의 이름을 입력"}
-            onSubmit={(name) =>
-              setOptions({
-                user: name,
-              })
-            }
-          />
-        </div>
-      </div>
+      )}
+
       <div className="flex mt-12 gap-x-8">
-        {" "}
         <Button
           onClickHandler={startSimulate}
           title={"시작"}

@@ -2,13 +2,14 @@
 
 import { useSimulationStore } from "@/app/store/useStore";
 import EmptyDoors from "../EmptyDoors";
+import SimulateContainer from "./SimulateContainer";
 
 const DoorsContainer = () => {
   const isStart = useSimulationStore((state) => state.isStart);
 
   return (
     <div className="flex items-center justify-center">
-      {isStart ? <EmptyDoors /> : <EmptyDoors />}
+      {isStart ? <EmptyDoors /> : <SimulateContainer />}
     </div>
   );
 };
