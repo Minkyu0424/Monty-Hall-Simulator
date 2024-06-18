@@ -34,8 +34,8 @@ const ControlContainer = () => {
 
   const resetSimulate = () => {
     setIsStart(false);
-    setIsSelected(false);
-    resetOptions();
+    setIsSelected(false)
+    resetOptions()
   };
 
   return (
