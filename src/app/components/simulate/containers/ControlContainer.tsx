@@ -1,6 +1,6 @@
 "use client";
 
-import { DOOR_COUNTS, OPTION_INIT, SIM_COUNTS } from "@/app/constants/simulate";
+import { DOOR_COUNTS, SIM_COUNTS } from "@/app/constants/simulate";
 import { useSimulationStore } from "@/app/store/useStore";
 import { insertAlert } from "@/app/utils/toast";
 import { Switch } from "@nextui-org/react";
@@ -12,14 +12,14 @@ import DropDown from "../../common/Dropdown";
 import Input from "../../common/Input";
 
 const ControlContainer = () => {
-  const [options, setOptions] = useState<simulate_option>(OPTION_INIT);
   const [isSelected, setIsSelected] = useState(false);
   const isStart = useSimulationStore((state) => state.isStart);
   const setIsStart = useSimulationStore((state) => state.setIsStart);
+  const options = useSimulationStore((state) => state.options);
+  const setOptions = useSimulationStore((state) => state.setOptions);
   const isFilled =
     options.turns !== "" && options.doorAmount !== "" && options.user !== "";
 
-  console.log(isStart, "시작여부");
   console.log(options, "옵션여부");
 
   const startSimulate = () => {
@@ -43,13 +43,12 @@ const ControlContainer = () => {
             options={DOOR_COUNTS}
             title={"시뮬레이션 문의 개수"}
             onSelect={(option) =>
-              setOptions((prevOptions) => ({
-                ...prevOptions,
+              setOptions({
                 doorAmount: option,
-              }))
+              })
             }
           />
-          <div className="bg-white w-[280px] h-12 rounded-2xl flex gap-x-6 items-center justify-center">
+          <div className="bg-white w-[280px] h-12 rounded-2xl flex gap-x-6 items-center justify-center shadow-xl">
             <p className="text-black text-lg font-semibold">결과만 보기</p>
             <Switch
               size="lg"
@@ -66,21 +65,18 @@ const ControlContainer = () => {
             options={SIM_COUNTS}
             title={"시뮬레이션 횟수"}
             onSelect={(option) =>
-              setOptions((prevOptions) => ({
-                ...prevOptions,
+              setOptions({
                 turns: option,
-              }))
+              })
             }
           />
           <Input
             title={"사용자의 이름을 입력"}
             onSubmit={(name) =>
-              setOptions((prevOptions) => ({
-                ...prevOptions,
+              setOptions({
                 user: name,
-              }))
+              })
             }
-            inputStyles={""}
           />
         </div>
       </div>
