@@ -6,7 +6,7 @@ import EmptyDoors from "../EmptyDoors";
 const DoorsContainer = () => {
   const isChecked = useState(false);
 
-  return <div>{isChecked ? <EmptyDoors /> : <EmptyDoors />}</div>;
+  return <div className="flex items-center justify-center">{isChecked ? <EmptyDoors /> : <EmptyDoors />}</div>;
 };
 
 export default DoorsContainer;

@@ -1,13 +1,9 @@
-type sim_Door = 3 | 5 | 10 | 50;
-
-type sim_Count = 1 | 3 | 5 | 10 | 30;
-
 interface simulate_option {
-  turns: sim_Count;
-  doorAmount: sim_Door;
+  turns: string;
+  doorAmount: string;
   user: string;
   onlyResult: boolean;
-  isPause?: boolean;
+  isPause: boolean;
 }
 
 // 상단 6-70퍼센트 문으로 보여주기
