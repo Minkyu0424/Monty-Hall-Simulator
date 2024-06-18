@@ -1,6 +1,6 @@
 "use client";
 import { MONTIHALL_RULL } from "@/app/constants/rule";
-import { Button } from "@nextui-org/button";
+import { Button } from "@nextui-org/react";
 
 import {
   Modal,
@@ -9,7 +9,7 @@ import {
   ModalFooter,
   ModalHeader,
   useDisclosure,
-} from "@nextui-org/modal";
+} from "@nextui-org/react";
 
 const GuideDoor = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();

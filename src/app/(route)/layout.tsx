@@ -1,6 +1,6 @@
-import { NextUIProvider } from "@nextui-org/system";
 import type { Metadata } from "next";
 import "../ui/globals.css";
+import { Providers } from "../store/Providers";
 
 export const metadata: Metadata = {
   title: "몬티홀 시뮬레이터",
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="bg-black min-h-screen min-w-[750px] mx-auto flex items-center justify-center">
-        <NextUIProvider>{children}</NextUIProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
