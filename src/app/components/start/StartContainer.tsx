@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Door from "../common/Door";
@@ -10,7 +11,9 @@ const StartContainer = () => {
       <Welcome />
       <ToastContainer />
       <div className="flex gap-x-8 mt-20">
-        <Door doorTitle={"시작"} />
+        <Link href={"/simulate"}>
+          <Door doorTitle={"시작"} />
+        </Link>
         <GuideDoor />
         <Door doorTitle={"기록"} />
       </div>
