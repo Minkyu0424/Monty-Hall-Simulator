@@ -3,7 +3,7 @@ interface ButtonProps {
   onClickHandler: () => void;
   title: string;
   buttonStyle: string;
-  disabled:boolean
+  disabled?:boolean
 }
 const Button = ({ onClickHandler, title, buttonStyle,disabled }: ButtonProps) => {
   return (
