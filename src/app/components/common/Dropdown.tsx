@@ -13,6 +13,7 @@ const DropDown = ({ options, title, onSelect }: DropDownProps) => {
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const textOption = title === "시뮬레이션 횟수" ? "회" : "개";
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -44,6 +45,7 @@ const DropDown = ({ options, title, onSelect }: DropDownProps) => {
       >
         <p className="m-auto text-black">
           {selectedOption ? selectedOption : title}
+          {selectedOption && selectedOption !== "자유모드" && textOption}
         </p>
         <div className="absolute top-[16px] right-[10px]">
           <Icons name={dropdown} />
@@ -68,6 +70,7 @@ const DropDown = ({ options, title, onSelect }: DropDownProps) => {
               >
                 <span className="text-sm font-semibold text-black leading-[21px]">
                   {option}
+                  {index !== 5 && textOption}
                 </span>
               </div>
             ))}

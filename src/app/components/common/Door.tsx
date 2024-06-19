@@ -19,7 +19,9 @@ const Door = ({ doorSize, isOpen }: DoorProps) => {
     <div
       style={{ width: `${doorWidth}px`, height: `${doorHeight}px` }}
       className={`flex relative bg-[#E3CAA5] hover:animate-wiggle rounded-xl items-center justify-center cursor-pointer shadow-xl`}
-    ></div>
+    >
+      {isOpen ? <div>난 자동차</div> : <div>난 염소</div>}
+    </div>
   );
 };
 
