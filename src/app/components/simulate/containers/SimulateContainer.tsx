@@ -75,6 +75,7 @@ const SimulateContainer = () => {
 
   return (
     <div>
+        <div>{repeat} 남은 반복 수</div>
       <div className="flex items-center justify-center w-[720px] h-[520px] bg-white border-[#e7e7e7] border-[5px] flex-wrap gap-x-3">
         {doors.map((isWinning, index) => (
           <Door
