@@ -23,7 +23,7 @@ const Door = ({ doorSize, isOpen, onClick, isStart }: DoorProps) => {
       className={`flex relative bg-[#E3CAA5] hover:animate-wiggle rounded-xl items-center justify-center cursor-pointer shadow-xl`}
       onClick={onClick}
     >
-      {isStart ? isOpen ? <div>난 자동차</div> : <div>난 염소</div> : <></>}
+      {isStart && isOpen ? <div>염소</div> : <div>x</div>}
       {}
     </div>
   );

@@ -15,36 +15,35 @@ const SimulateContainer = () => {
   const doorIndex = DOOR_COUNTS.indexOf(options.doorAmount);
   const turnsIndex = SIM_COUNTS.indexOf(options.turns);
   const doorCnt = DOOR_AMOUNT[doorIndex];
-  const turnsCnt = SIM_TURNS[turnsIndex];
+  let turnsCnt = SIM_TURNS[turnsIndex];
 
   const [doors, setDoors] = useState<boolean[]>([]);
   const [isStart, setIsStart] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
   const [revealedDoors, setRevealedDoors] = useState<boolean[]>([]);
   const [winningIndex, setWinningIndex] = useState<number | null>(null);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    if (doorCnt > 0) {
-      const newDoors = Array(doorCnt).fill(false);
-      const winningIdx = Math.floor(Math.random() * doorCnt);
-      setDoors(newDoors);
-      setRevealedDoors(newDoors);
-      setWinningIndex(winningIdx);
-      setSelectedIndex(null);
-    }
+    const newDoors = Array(doorCnt).fill(false);
+    const winningIdx = Math.floor(Math.random() * doorCnt);
+    setDoors(newDoors);
+    setRevealedDoors(newDoors);
+    setWinningIndex(winningIdx);
+    console.log("초기화 시작");
+    console.log("자동차 인덱스", winningIdx);
+    console.log("초기화 시작");
   }, [doorCnt]);
 
   const handleSelect = (index: number) => {
     setIsStart(true);
-    setSelectedIndex(index);
     // Reveal doors logic
     const newRevealedDoors = Array(doorCnt).fill(false);
     for (let i = 0; i < doorCnt; i++) {
       if (i !== index && i !== winningIndex) newRevealedDoors[i] = true;
     }
-    if (index === winningIndex)
-      newRevealedDoors[Math.floor(Math.random() * winningIndex)] = true;
+    if (index === winningIndex) newRevealedDoors[winningIndex - 1] = true;
     setRevealedDoors(newRevealedDoors);
+    turnsCnt -= 1;
   };
 
   const resetSimulate = () => {
@@ -63,14 +62,13 @@ const SimulateContainer = () => {
       newDoors[winningIdx] = true;
       setDoors(newDoors);
       setWinningIndex(winningIdx);
-      setSelectedIndex(null);
       setRevealedDoors(Array(doorCnt).fill(false));
     }
   };
 
   return (
     <div>
-      <div>{doorCnt} 남은 반복 수</div>
+      <div>{turnsCnt} 남은 반복 수</div>
       <div className="flex items-center justify-center w-[720px] h-[520px] bg-white border-[#e7e7e7] border-[5px] flex-wrap gap-x-3">
         {doors.map((isWinning, index) => (
           <Door
