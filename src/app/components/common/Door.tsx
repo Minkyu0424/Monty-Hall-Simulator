@@ -10,9 +10,10 @@ interface DoorProps {
   isOpen: boolean;
   onClick: () => void;
   isStart: boolean;
+  isCar: boolean;
 }
 
-const Door = ({ doorSize, isOpen, onClick, isStart }: DoorProps) => {
+const Door = ({ doorSize, isOpen, onClick, isStart, isCar }: DoorProps) => {
   const doorIndex = DOOR_COUNTS.indexOf(doorSize);
   const doorWidth = DOOR_SIZE_W[doorIndex];
   const doorHeight = DOOR_SIZE_H[doorIndex];
@@ -23,7 +24,16 @@ const Door = ({ doorSize, isOpen, onClick, isStart }: DoorProps) => {
       className={`flex relative bg-[#E3CAA5] hover:animate-wiggle rounded-xl items-center justify-center cursor-pointer shadow-xl`}
       onClick={onClick}
     >
-      {isStart && isOpen ? <div>염소</div> : <div>x</div>}
+      {isStart && isOpen ? <div>열린거</div> : <div>안 열린거</div>}
+      {isOpen ? (
+        isCar ? (
+          <div>나는 차였습니다~</div>
+        ) : (
+          <div>나는 염소였습니다~</div>
+        )
+      ) : (
+        <></>
+      )}
       {}
     </div>
   );

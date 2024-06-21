@@ -36,14 +36,20 @@ const SimulateContainer = () => {
 
   const handleSelect = (index: number) => {
     setIsStart(true);
-    // Reveal doors logic
-    const newRevealedDoors = Array(doorCnt).fill(false);
-    for (let i = 0; i < doorCnt; i++) {
-      if (i !== index && i !== winningIndex) newRevealedDoors[i] = true;
+    setIsSelected(true);
+    if (!isSelected) {
+      const newRevealedDoors = Array(doorCnt).fill(false);
+      for (let i = 0; i < doorCnt; i++) {
+        if (i !== index && i !== winningIndex) newRevealedDoors[i] = true;
+      }
+      if (index === winningIndex) newRevealedDoors[winningIndex - 1] = true;
+      setRevealedDoors(newRevealedDoors);
+    } else {
+      turnsCnt -= 1;
+      setIsSelected(false);
+      const newRevealedDoors = Array(doorCnt).fill(true);
+      setRevealedDoors(newRevealedDoors);
     }
-    if (index === winningIndex) newRevealedDoors[winningIndex - 1] = true;
-    setRevealedDoors(newRevealedDoors);
-    turnsCnt -= 1;
   };
 
   const resetSimulate = () => {
@@ -76,6 +82,7 @@ const SimulateContainer = () => {
             key={index}
             doorSize={options.doorAmount}
             isOpen={revealedDoors[index]}
+            isCar={index === winningIndex}
             onClick={() => handleSelect(index)}
           />
         ))}
