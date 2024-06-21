@@ -9,9 +9,10 @@ interface DoorProps {
   doorSize: string;
   isOpen: boolean;
   onClick: () => void;
+  isStart: boolean;
 }
 
-const Door = ({ doorSize, isOpen, onClick }: DoorProps) => {
+const Door = ({ doorSize, isOpen, onClick, isStart }: DoorProps) => {
   const doorIndex = DOOR_COUNTS.indexOf(doorSize);
   const doorWidth = DOOR_SIZE_W[doorIndex];
   const doorHeight = DOOR_SIZE_H[doorIndex];
@@ -22,7 +23,8 @@ const Door = ({ doorSize, isOpen, onClick }: DoorProps) => {
       className={`flex relative bg-[#E3CAA5] hover:animate-wiggle rounded-xl items-center justify-center cursor-pointer shadow-xl`}
       onClick={onClick}
     >
-      {isOpen ? <div>난 자동차</div> : <div>난 염소</div>}
+      {isStart ? isOpen ? <div>난 자동차</div> : <div>난 염소</div> : <></>}
+      {}
     </div>
   );
 };
