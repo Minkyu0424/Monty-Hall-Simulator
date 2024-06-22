@@ -41,7 +41,7 @@ const ControlContainer = () => {
     <div className="w-full h-full flex items-center justify-center flex-col mt-10">
       <ToastContainer />
       {isStart ? (
-        <div className="h-[160px]">지금은 직관 중.....</div>
+        <div className="h-[120px]">지금은 직관 중.....</div>
       ) : (
         <div className="flex gap-x-8 h-[160px]">
           <div className="flex flex-col gap-y-6">
