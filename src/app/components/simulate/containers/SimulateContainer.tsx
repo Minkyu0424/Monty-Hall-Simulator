@@ -1,9 +1,4 @@
-import {
-  DOOR_AMOUNT,
-  DOOR_COUNTS,
-  SIM_COUNTS,
-  SIM_TURNS,
-} from "@/app/constants/simulate";
+import { DOOR_AMOUNT, DOOR_COUNTS } from "@/app/constants/simulate";
 import { useSimulationStore } from "@/app/store/useStore";
 import { useEffect, useState } from "react";
 import Button from "../../common/Button";
@@ -21,6 +16,7 @@ const SimulateContainer = () => {
   const [isSelected, setIsSelected] = useState(false);
   const [revealedDoors, setRevealedDoors] = useState<boolean[]>([]);
   const [winningIndex, setWinningIndex] = useState<number | null>(null);
+  console.log(options.turns, "횟수");
 
   useEffect(() => {
     const winningIdx = Math.floor(Math.random() * doorCnt);
@@ -40,10 +36,16 @@ const SimulateContainer = () => {
       for (let i = 0; i < doorCnt; i++) {
         if (i !== index && i !== winningIndex) newRevealedDoors[i] = true;
       }
-      if (index === winningIndex) newRevealedDoors[winningIndex - 1] = true;
-      setRevealedDoors(initDoors);
+      if (index === winningIndex) newRevealedDoors[winningIndex - 1] = false;
+      setRevealedDoors(newRevealedDoors);
     } else {
       setOptions({ turns: options.turns - 1 });
+      if (index === winningIndex) {
+        console.log("정답!");
+      } else {
+        console.log("땡~!");
+      }
+
       setIsSelected(false);
       const newRevealedDoors = Array(doorCnt).fill(true);
       setRevealedDoors(newRevealedDoors);
@@ -52,13 +54,12 @@ const SimulateContainer = () => {
 
   const resetSimulate = () => {
     setIsStart(false);
-    if (options.turns > 0) {
+    if (options.turns > 0 || Number.isNaN(options.turns)) {
       const newDoors = initDoors;
       const winningIdx = Math.floor(Math.random() * doorCnt);
-      newDoors[winningIdx] = true;
+      setRevealedDoors(newDoors);
       setDoors(newDoors);
       setWinningIndex(winningIdx);
-      setRevealedDoors(initDoors);
     }
   };
 
@@ -66,7 +67,7 @@ const SimulateContainer = () => {
     <div>
       <div>{options.turns} 남은 반복 수</div>
       <div className="flex items-center justify-center w-[720px] h-[520px] bg-white border-[#e7e7e7] border-[5px] flex-wrap gap-x-3">
-        {doors.map((isWinning, index) => (
+        {doors.map((_, index) => (
           <Door
             isStart={isStart}
             key={index}
