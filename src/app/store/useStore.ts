@@ -1,13 +1,6 @@
 "use client";
 import { create } from "zustand";
-
-const initialOptions: simulate_option = {
-  turns: 0,
-  doorAmount: "",
-  user: "",
-  onlyResult: false,
-  isPause: false,
-};
+import { OPTION_INIT } from "../constants/simulate";
 
 type Store = {
   isStart: boolean;
@@ -20,13 +13,13 @@ type Store = {
 export const useSimulationStore = create<Store>((set) => ({
   isStart: false,
   setIsStart: (isStart) => set({ isStart }),
-  options: initialOptions,
+  options: OPTION_INIT,
   setOptions: (newOptions) =>
     set((state) => ({
       options: { ...state.options, ...newOptions },
     })),
   reset: () =>
     set({
-      options: initialOptions,
+      options: OPTION_INIT,
     }),
 }));

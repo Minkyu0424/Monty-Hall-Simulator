@@ -22,10 +22,10 @@ const Door = ({ doorSize, isOpen, onClick, isStart, isCar }: DoorProps) => {
     <div
       aria-disabled={isOpen}
       style={{ width: `${doorWidth}px`, height: `${doorHeight}px` }}
-      className={`flex relative bg-[#E3CAA5] ${!isOpen && 'hover:animate-wiggle cursor-pointer'} rounded-xl items-center justify-center  shadow-xl text-black text-xl`}
+      className={`flex relative bg-[#E3CAA5] ${!isOpen && 'hover:animate-wiggle cursor-pointer'} rounded-xl items-center justify-center  shadow-xl text-black text-4xl`}
       onClick={!isOpen ? onClick : undefined}
     >
-      {isOpen ? isCar ? <div>🚗</div> : <div>🐐</div> : <>Closed</>}
+      {isOpen ? isCar ? <div>🚗</div> : <div>🐐</div> : <>❓</>}
       {}
     </div>
   );

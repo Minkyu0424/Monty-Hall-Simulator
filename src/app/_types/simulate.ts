@@ -6,6 +6,11 @@ interface simulate_option {
   isPause: boolean;
 }
 
+interface selectionState {
+  initialSelection: number | null;
+  hasChanged: boolean;
+}
+
 // 상단 6-70퍼센트 문으로 보여주기
 // 돌아가기 버튼 => 진행중이던 시뮬레이션이 초기화 된다는 경고창 On
 
