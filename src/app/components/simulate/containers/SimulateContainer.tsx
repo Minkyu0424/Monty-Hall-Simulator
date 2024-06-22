@@ -16,6 +16,7 @@ const SimulateContainer = () => {
   const turnsIndex = SIM_COUNTS.indexOf(options.turns);
   const doorCnt = DOOR_AMOUNT[doorIndex];
   let turnsCnt = SIM_TURNS[turnsIndex];
+  const initDoors = Array(doorCnt).fill(false);
 
   const [doors, setDoors] = useState<boolean[]>([]);
   const [isStart, setIsStart] = useState(false);
@@ -24,10 +25,9 @@ const SimulateContainer = () => {
   const [winningIndex, setWinningIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    const newDoors = Array(doorCnt).fill(false);
     const winningIdx = Math.floor(Math.random() * doorCnt);
-    setDoors(newDoors);
-    setRevealedDoors(newDoors);
+    setDoors(initDoors);
+    setRevealedDoors(initDoors);
     setWinningIndex(winningIdx);
     console.log("초기화 시작");
     console.log("자동차 인덱스", winningIdx);
@@ -38,14 +38,14 @@ const SimulateContainer = () => {
     setIsStart(true);
     setIsSelected(true);
     if (!isSelected) {
-      const newRevealedDoors = Array(doorCnt).fill(false);
+      const newRevealedDoors = initDoors;
       for (let i = 0; i < doorCnt; i++) {
         if (i !== index && i !== winningIndex) newRevealedDoors[i] = true;
       }
       if (index === winningIndex) newRevealedDoors[winningIndex - 1] = true;
-      setRevealedDoors(newRevealedDoors);
+      setRevealedDoors(initDoors);
     } else {
-      turnsCnt -= 1;
+      setOptions({ turns: String(Number(options.turns) - 1) });
       setIsSelected(false);
       const newRevealedDoors = Array(doorCnt).fill(true);
       setRevealedDoors(newRevealedDoors);
@@ -53,22 +53,14 @@ const SimulateContainer = () => {
   };
 
   const resetSimulate = () => {
-    setOptions({
-      turns: "",
-      doorAmount: "",
-      user: "",
-      onlyResult: false,
-      isPause: false,
-    });
     setIsStart(false);
-    //초기화 횟수
     if (turnsCnt > 0) {
-      const newDoors = Array(doorCnt).fill(false);
+      const newDoors = initDoors;
       const winningIdx = Math.floor(Math.random() * doorCnt);
       newDoors[winningIdx] = true;
       setDoors(newDoors);
       setWinningIndex(winningIdx);
-      setRevealedDoors(Array(doorCnt).fill(false));
+      setRevealedDoors(initDoors);
     }
   };
 
