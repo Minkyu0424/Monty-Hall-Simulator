@@ -92,11 +92,15 @@ const SimulateContainer = () => {
         {isEnd ? (
           isCorrect ? (
             <div>
-              정답!<Button onClick={resetSimulate}>다음 시뮬레이션</Button>
+              <div>정답!</div>
+              <Button onClick={resetSimulate}>다음 시뮬레이션</Button>
+              <div>{selection.hasChanged ? "변화O 성공~" : "변화X  성공!"}</div>
             </div>
           ) : (
             <div>
-              실패!<Button onClick={resetSimulate}>다음 시뮬레이션</Button>
+              <div>실패!</div>
+              <Button onClick={resetSimulate}>다음 시뮬레이션</Button>
+              <div>{selection.hasChanged ? "변화O  실패~" : "변화X 실패"}</div>
             </div>
           )
         ) : (
