@@ -1,4 +1,8 @@
-import { DOOR_AMOUNT, DOOR_COUNTS } from "@/app/constants/simulate";
+import {
+  DOOR_AMOUNT,
+  DOOR_COUNTS,
+  SELECTION_INIT,
+} from "@/app/constants/simulate";
 import { useSimulationStore } from "@/app/store/useStore";
 import { Button } from "@nextui-org/button";
 import { useEffect, useState } from "react";
@@ -17,8 +21,8 @@ const SimulateContainer = () => {
   const [isEnd, setIsEnd] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [revealedDoors, setRevealedDoors] = useState<boolean[]>(initDoors);
+  const [selection, setSelection] = useState<selectionState>(SELECTION_INIT);
   const [winningIndex, setWinningIndex] = useState<number | null>(null);
-  console.log(options.turns, "횟수");
 
   useEffect(() => {
     const winningIdx = Math.floor(Math.random() * doorCnt);
@@ -26,19 +30,26 @@ const SimulateContainer = () => {
   }, []);
 
   const handleSelect = (index: number) => {
-    setIsStart(true);
-    setIsSelected(true);
+    if (!isStart) {
+      setIsStart(true);
+      setSelection({ initialDoor: index, hasChanged: false });
+    }
     if (!isSelected) {
-      const newRevealedDoors = initDoors;
+      const newRevealedDoors = initDoors.slice();
       for (let i = 0; i < doorCnt; i++) {
         if (i !== index && i !== winningIndex) newRevealedDoors[i] = true;
       }
       if (index === winningIndex) newRevealedDoors[winningIndex - 1] = false;
       setRevealedDoors(newRevealedDoors);
+      setIsSelected(true);
     } else {
       setIsSelected(false);
       setIsEnd(true);
       setIsCorrect(index === winningIndex);
+      setSelection((prev) => ({
+        ...prev,
+        hasChanged: index !== prev.initialDoor,
+      }));
       const newRevealedDoors = Array(doorCnt).fill(true);
       setRevealedDoors(newRevealedDoors);
     }
@@ -46,6 +57,9 @@ const SimulateContainer = () => {
 
   const resetSimulate = () => {
     setIsStart(false);
+    setIsEnd(false);
+    setIsCorrect(false);
+    setSelection(SELECTION_INIT);
     if (options.turns > 0 || Number.isNaN(options.turns)) {
       setOptions({ turns: options.turns - 1 });
       setDoors(initDoors);

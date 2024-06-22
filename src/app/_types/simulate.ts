@@ -7,7 +7,7 @@ interface simulate_option {
 }
 
 interface selectionState {
-  initialSelection: number | null;
+  initialDoor: number | null;
   hasChanged: boolean;
 }
 

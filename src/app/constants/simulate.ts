@@ -11,7 +11,7 @@ export const OPTION_INIT = {
 };
 
 export const SELECTION_INIT: selectionState = {
-  initialSelection: null,
+  initialDoor: null,
   hasChanged: false,
 };
 
