@@ -2,7 +2,7 @@
 import { create } from "zustand";
 
 const initialOptions: simulate_option = {
-  turns: "",
+  turns: 0,
   doorAmount: "",
   user: "",
   onlyResult: false,

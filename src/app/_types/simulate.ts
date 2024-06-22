@@ -1,5 +1,5 @@
 interface simulate_option {
-  turns: string;
+  turns: number;
   doorAmount: string;
   user: string;
   onlyResult: boolean;

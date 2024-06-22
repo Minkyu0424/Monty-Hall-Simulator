@@ -21,15 +21,15 @@ const Door = ({ doorSize, isOpen, onClick, isStart, isCar }: DoorProps) => {
   return (
     <div
       style={{ width: `${doorWidth}px`, height: `${doorHeight}px` }}
-      className={`flex relative bg-[#E3CAA5] hover:animate-wiggle rounded-xl items-center justify-center cursor-pointer shadow-xl`}
+      className={`flex relative bg-[#E3CAA5] hover:animate-wiggle rounded-xl items-center justify-center cursor-pointer shadow-xl text-black text-xl`}
       onClick={onClick}
     >
-      {isStart && isOpen ? <div>열린거</div> : <div>안 열린거</div>}
+      {isStart && isOpen ? <div>Opened</div> : <div>Closed</div>}
       {isOpen ? (
         isCar ? (
-          <div>나는 차였습니다~</div>
+          <div>🚗</div>
         ) : (
-          <div>나는 염소였습니다~</div>
+          <div>🐐</div>
         )
       ) : (
         <></>

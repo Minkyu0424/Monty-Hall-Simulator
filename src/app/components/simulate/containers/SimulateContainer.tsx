@@ -13,9 +13,7 @@ const SimulateContainer = () => {
   const options = useSimulationStore((state) => state.options);
   const setOptions = useSimulationStore((state) => state.setOptions);
   const doorIndex = DOOR_COUNTS.indexOf(options.doorAmount);
-  const turnsIndex = SIM_COUNTS.indexOf(options.turns);
   const doorCnt = DOOR_AMOUNT[doorIndex];
-  let turnsCnt = SIM_TURNS[turnsIndex];
   const initDoors = Array(doorCnt).fill(false);
 
   const [doors, setDoors] = useState<boolean[]>([]);
@@ -45,7 +43,7 @@ const SimulateContainer = () => {
       if (index === winningIndex) newRevealedDoors[winningIndex - 1] = true;
       setRevealedDoors(initDoors);
     } else {
-      setOptions({ turns: String(Number(options.turns) - 1) });
+      setOptions({ turns: options.turns - 1 });
       setIsSelected(false);
       const newRevealedDoors = Array(doorCnt).fill(true);
       setRevealedDoors(newRevealedDoors);
@@ -54,7 +52,7 @@ const SimulateContainer = () => {
 
   const resetSimulate = () => {
     setIsStart(false);
-    if (turnsCnt > 0) {
+    if (options.turns > 0) {
       const newDoors = initDoors;
       const winningIdx = Math.floor(Math.random() * doorCnt);
       newDoors[winningIdx] = true;
@@ -66,7 +64,7 @@ const SimulateContainer = () => {
 
   return (
     <div>
-      <div>{turnsCnt} 남은 반복 수</div>
+      <div>{options.turns} 남은 반복 수</div>
       <div className="flex items-center justify-center w-[720px] h-[520px] bg-white border-[#e7e7e7] border-[5px] flex-wrap gap-x-3">
         {doors.map((isWinning, index) => (
           <Door

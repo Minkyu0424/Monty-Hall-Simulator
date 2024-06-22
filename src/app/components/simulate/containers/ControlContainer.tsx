@@ -19,7 +19,7 @@ const ControlContainer = () => {
   const setOptions = useSimulationStore((state) => state.setOptions);
   const resetOptions = useSimulationStore((state) => state.reset);
   const isFilled =
-    options.turns !== "" && options.doorAmount !== "" && options.user !== "";
+    options.turns !== 0 && options.doorAmount !== "" && options.user !== "";
 
   const startSimulate = () => {
     if (isFilled) {
@@ -72,7 +72,7 @@ const ControlContainer = () => {
               title={"시뮬레이션 횟수"}
               onSelect={(option) =>
                 setOptions({
-                  turns: option,
+                  turns: Number(option),
                 })
               }
             />
