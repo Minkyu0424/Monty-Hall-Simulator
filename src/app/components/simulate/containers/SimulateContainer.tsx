@@ -17,6 +17,7 @@ const SimulateContainer = () => {
   const setScore = useScoreStore((state) => state.setScore);
   const changedScore = useScoreStore((state) => state.changedScore);
   const setChangedScore = useScoreStore((state) => state.setChangedScore);
+  const resetScore = useScoreStore((state) => state.reset);
 
   const doorIndex = DOOR_COUNTS.indexOf(options.doorAmount);
   const doorCnt = DOOR_AMOUNT[doorIndex];
@@ -34,6 +35,7 @@ const SimulateContainer = () => {
   useEffect(() => {
     const winningIdx = Math.floor(Math.random() * doorCnt);
     setWinningIndex(winningIdx);
+    resetScore();
   }, []);
 
   const handleSelect = (index: number) => {
