@@ -9,7 +9,7 @@ const Button = ({ onClickHandler, title, buttonStyle,disabled }: ButtonProps) =>
   return (
     <div>
       <button
-        className={`w-[280px] h-16 text-2xl font-bold  shadow-lg rounded-xl ${buttonStyle}`}
+        className={` text-2xl font-bold  shadow-lg rounded-xl ${buttonStyle}`}
         onClick={onClickHandler}
         disabled={disabled}
       >
