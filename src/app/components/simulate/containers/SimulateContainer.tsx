@@ -4,9 +4,9 @@ import {
   SELECTION_INIT,
 } from "@/app/constants/simulate";
 import { useSimulationStore } from "@/app/store/useStore";
-import { Button } from "@nextui-org/button";
 import { useEffect, useState } from "react";
 import Door from "../../common/Door";
+import Button from "../../common/Button";
 
 const SimulateContainer = () => {
   const options = useSimulationStore((state) => state.options);
@@ -71,14 +71,21 @@ const SimulateContainer = () => {
 
   return (
     <div>
-      <div className="flex text-3xl text-black font-bold">
-        {Number.isNaN(options.turns)
-          ? "자유모드 ∞"
-          : "남은 횟수 : " + options.turns}
+      <div className="flex text-2xl text-black font-bold mb-2 justify-between">
+        <div className="flex items-center">
+          {Number.isNaN(options.turns)
+            ? "자유모드 ∞"
+            : "남은 횟수 : " + options.turns}
+        </div>
+        <div className="flex gap-x-3 items-center justify-center">
+          <p>처음에 고른 문 :</p>
+          <div className="w-7 h-11 border-[3px] rounded-xl border-green-500"></div>
+        </div>
       </div>
       <div className="flex items-center justify-center w-[720px] h-[520px] bg-white border-[#e7e7e7] border-[5px] flex-wrap gap-x-3">
         {doors.map((_, index) => (
           <Door
+            selected={selection.initialDoor === index}
             isStart={isStart}
             key={index}
             doorSize={options.doorAmount}
@@ -88,18 +95,18 @@ const SimulateContainer = () => {
           />
         ))}
       </div>
-      <div className="text-2xl text-black font-medium h-10">
+      <div className="w-full flex text-2xl text-black font-medium h-10">
         {isEnd ? (
           isCorrect ? (
-            <div>
+            <div className="">
               <div>정답!</div>
-              <Button onClick={resetSimulate}>다음 시뮬레이션</Button>
+              <Button onClickHandler={resetSimulate} title={"Next"} buttonStyle={"bg-white w-[180px] h-12"}/>
               <div>{selection.hasChanged ? "변화O 성공~" : "변화X  성공!"}</div>
             </div>
           ) : (
             <div>
               <div>실패!</div>
-              <Button onClick={resetSimulate}>다음 시뮬레이션</Button>
+              <Button onClickHandler={resetSimulate} title={"Next"} buttonStyle={"bg-white w-[180px] h-12"}/>
               <div>{selection.hasChanged ? "변화O  실패~" : "변화X 실패"}</div>
             </div>
           )
