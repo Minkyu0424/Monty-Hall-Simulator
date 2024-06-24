@@ -74,7 +74,7 @@ const SimulateContainer = () => {
 
   return (
     <div>
-      <div className="flex text-2xl text-black font-bold mb-2 justify-between">
+      <div className="flex text-2xl text-black font-bold mb-2 justify-between px-3">
         <div className="flex items-center">
           {Number.isNaN(options.turns)
             ? "자유모드 ∞"
@@ -98,30 +98,22 @@ const SimulateContainer = () => {
           />
         ))}
       </div>
-      <div className="w-full flex text-2xl text-black font-medium h-10">
+      <div className="w-full flex text-xl text-black font-semibold h-10">
         {isEnd ? (
-          isCorrect ? (
+          <div className="w-full h-full flex justify-between items-center px-4 mt-2">
+            <div className="flex  gap-x-4">
+              {isCorrect ? "⭕ 정답!" : "❌ 오답!"}
+              {/* <div>{selection.hasChanged ? "변화O 성공~" : "변화X  성공!"}</div> */}
+              <div>총 성공 횟수 : {score}</div>
+            </div>
             <div className="flex">
-              <div>정답!</div>
               <Button
                 onClickHandler={resetSimulate}
                 title={"Next"}
-                buttonStyle={"bg-white w-[180px] h-12"}
+                buttonStyle={"bg-[#5ea615] w-[100px] h-10 text-white"}
               />
-              <div>{selection.hasChanged ? "변화O 성공~" : "변화X  성공!"}</div>
-              <div>맞춘개수 : {score}</div>
             </div>
-          ) : (
-            <div>
-              <div>실패!</div>
-              <Button
-                onClickHandler={resetSimulate}
-                title={"Next"}
-                buttonStyle={"bg-white w-[180px] h-12"}
-              />
-              <div>{selection.hasChanged ? "변화O  실패~" : "변화X 실패"}</div>
-            </div>
-          )
+          </div>
         ) : (
           <div></div>
         )}
