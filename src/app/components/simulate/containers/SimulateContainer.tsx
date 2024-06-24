@@ -7,6 +7,7 @@ import { useScoreStore, useSimulationStore } from "@/app/store/useStore";
 import { useEffect, useState } from "react";
 import Button from "../../common/Button";
 import Door from "../../common/Door";
+import Analystic from "@/app/ui/Icons/Analystic";
 
 const SimulateContainer = () => {
   const options = useSimulationStore((state) => state.options);
@@ -118,7 +119,8 @@ const SimulateContainer = () => {
           </div>
         ) : (
           <div className="flex w-full items-center h-10 mt-2 px-4 justify-between">
-            <div>통계</div>
+            <div className="flex gap-x-2 items-center">통계 <Analystic /></div>
+            
             <p>
               {selection.initialDoor &&
                 isSelected &&

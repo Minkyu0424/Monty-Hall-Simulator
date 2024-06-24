@@ -19,19 +19,19 @@ ChartJS.register(
   Legend
 );
 
-const labels = ["January"];
+const labels = [""];
 
 export const data = {
   labels,
   datasets: [
     {
-      label: "Dataset 1",
-      data: [120],
+      label: "바꾼경우 정답률",
+      data: [98],
       backgroundColor: "rgba(255, 99, 132, 0.5)",
     },
     {
-      label: "Dataset 2",
-      data: [98],
+      label: "안바꾼경우 정답률",
+      data: [200],
       backgroundColor: "rgba(53, 162, 235, 0.5)",
     },
   ],
@@ -41,17 +41,36 @@ export const options = {
   plugins: {
     legend: {
       position: "top" as const,
+      labels: {
+        font: {
+          weight: "bold" as const,
+          size: 16,
+          family: " 'Pretendard', sans-serif",
+        },
+      },
     },
     title: {
+      font: {
+        weight: "bold" as const,
+        size: 16,
+        family: " 'Pretendard', sans-serif",
+      },
       display: true,
-      text: "성공 현황 통계",
+      text: "정답률 통계",
     },
   },
 };
 const ScoreBox = () => {
   return (
     <div className="w-[720px] h-[180px] border-[#000000] rounded-xl bg-white px-2 mb-2">
-      <Bar options={options} data={data} />
+      <div className="flex w-full h-full gap-x-4">
+        <Bar options={options} data={data} />
+        <div className="flex w-[300px] flex-col text-black text-2xl pl-4 pt-4 items-center justify-center gap-y-3">
+          <p>시도횟수</p>
+          <p>sds</p>
+          <p>sds</p>
+        </div>
+      </div>
     </div>
   );
 };
