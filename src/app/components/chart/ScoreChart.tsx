@@ -62,10 +62,28 @@ export const options = {
       font: {
         weight: "bold" as const,
         size: 16,
-        family: " 'Pretendard', sans-serif",
+        family: "'Pretendard', sans-serif",
       },
       display: true,
       text: "시뮬레이션 현황",
+    },
+  },
+  scales: {
+    x: {
+      ticks: {
+        font: {
+          size: 14,
+          family: "'Pretendard', sans-serif",
+        },
+      },
+    },
+    y: {
+      ticks: {
+        font: {
+          size: 14,
+          family: "'Pretendard', sans-serif",
+        },
+      },
     },
   },
 };
