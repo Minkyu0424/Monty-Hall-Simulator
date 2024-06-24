@@ -126,8 +126,8 @@ const SimulateContainer = () => {
             <div className="flex gap-x-2">
               {isCorrect ? "⭕ 정답!" : "❌ 오답!"}
               {/* <div>{selection.hasChanged ? "변화O 성공~" : "변화X  성공!"}</div> */}
-              <div>총 승리 횟수 : {score.win}</div>
-              <div>총 패배 횟수 : {score.lose}</div>
+              <div>총 승리 횟수 : {score.win + changedScore.win}</div>
+              <div>총 패배 횟수 : {score.lose + changedScore.lose}</div>
             </div>
             <div className="flex">
               <Button
