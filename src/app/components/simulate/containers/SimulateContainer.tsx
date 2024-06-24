@@ -4,26 +4,29 @@ import {
   SELECTION_INIT,
 } from "@/app/constants/simulate";
 import { useScoreStore, useSimulationStore } from "@/app/store/useStore";
+import Analystic from "@/app/ui/Icons/Analystic";
 import { useEffect, useState } from "react";
 import Button from "../../common/Button";
 import Door from "../../common/Door";
-import Analystic from "@/app/ui/Icons/Analystic";
 
 const SimulateContainer = () => {
   const options = useSimulationStore((state) => state.options);
   const setOptions = useSimulationStore((state) => state.setOptions);
   const score = useScoreStore((state) => state.score);
   const setScore = useScoreStore((state) => state.setScore);
+  const changedScore = useScoreStore((state) => state.changedScore);
+  const setChangedScore = useScoreStore((state) => state.setChangedScore);
+
   const doorIndex = DOOR_COUNTS.indexOf(options.doorAmount);
   const doorCnt = DOOR_AMOUNT[doorIndex];
   const initDoors = Array(doorCnt).fill(false);
 
   const [doors, setDoors] = useState<boolean[]>(initDoors);
+  const [revealedDoors, setRevealedDoors] = useState<boolean[]>(initDoors);
   const [isStart, setIsStart] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
-  const [revealedDoors, setRevealedDoors] = useState<boolean[]>(initDoors);
   const [selection, setSelection] = useState<selectionState>(SELECTION_INIT);
   const [winningIndex, setWinningIndex] = useState<number | null>(null);
 
@@ -53,7 +56,19 @@ const SimulateContainer = () => {
         ...prev,
         hasChanged: index !== prev.initialDoor,
       }));
-      setScore(index === winningIndex ? score + 1 : score);
+      if (index !== selection.initialDoor) {
+        setChangedScore(
+          index === winningIndex
+            ? { win: changedScore.win + 1 }
+            : { lose: changedScore.lose + 1 }
+        );
+      } else {
+        setScore(
+          index === winningIndex
+            ? { win: score.win + 1 }
+            : { lose: score.lose + 1 }
+        );
+      }
       const newRevealedDoors = Array(doorCnt).fill(true);
       setRevealedDoors(newRevealedDoors);
     }
@@ -105,7 +120,8 @@ const SimulateContainer = () => {
             <div className="flex gap-x-2">
               {isCorrect ? "⭕ 정답!" : "❌ 오답!"}
               {/* <div>{selection.hasChanged ? "변화O 성공~" : "변화X  성공!"}</div> */}
-              <div>총 성공 횟수 : {score}</div>
+              <div>총 승리 횟수 : {score.win}</div>
+              <div>총 패배 횟수 : {score.lose}</div>
             </div>
             <div className="flex">
               <Button
@@ -119,8 +135,10 @@ const SimulateContainer = () => {
           </div>
         ) : (
           <div className="flex w-full items-center h-10 mt-2 px-4 justify-between">
-            <div className="flex gap-x-2 items-center">통계 <Analystic /></div>
-            
+            <div className="flex gap-x-2 items-center">
+              통계 <Analystic />
+            </div>
+
             <p>
               {selection.initialDoor &&
                 isSelected &&

@@ -1,4 +1,5 @@
 "use client";
+import { useScoreStore } from "@/app/store/useStore";
 import {
   BarElement,
   CategoryScale,
@@ -20,28 +21,30 @@ ChartJS.register(
 );
 
 const ScoreChart = () => {
+  const score = useScoreStore((state) => state.score);
+  const changedScore = useScoreStore((state) => state.changedScore);
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "자동차",
+        data: [score.win + changedScore.win],
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+      {
+        label: "염소",
+        data: [score.lose + changedScore.lose],
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+      },
+    ],
+  };
+
   return <Bar options={options} data={data} />;
 };
 
 export default ScoreChart;
 
 const labels = [""];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "자동차",
-      data: [98],
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "염소",
-      data: [200],
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-  ],
-};
 
 export const options = {
   responsive: true,

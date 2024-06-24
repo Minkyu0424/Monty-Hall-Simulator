@@ -1,3 +1,4 @@
+import { useScoreStore } from "@/app/store/useStore";
 import {
   BarElement,
   CategoryScale,
@@ -19,9 +20,28 @@ ChartJS.register(
   Legend
 );
 
+const AnalChart = () => {
+  const score = useScoreStore((state) => state.score);
+  const changedScore = useScoreStore((state) => state.changedScore);
+  const data = {
+    labels,
+    datasets: [
+      {
+        data: [changedScore.win, changedScore.lose, score.win, score.lose,],
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+    ],
+  };
+  
+  return <Bar options={options} data={data} />;
+};
+
+export default AnalChart;
+
 export const options = {
   indexAxis: "y" as const,
-  
+
   elements: {
     bar: {
       borderWidth: 2,
@@ -29,7 +49,6 @@ export const options = {
   },
   responsive: true,
   plugins: {
-    
     legend: {
       display: false,
     },
@@ -41,7 +60,7 @@ export const options = {
         family: " 'Pretendard', sans-serif",
       },
       display: true,
-      text: "시뮬레이션 통계",
+      text: "승패 횟수 통계",
     },
   },
   scales: {
@@ -64,21 +83,9 @@ export const options = {
   },
 };
 
-const labels = ["1번째", "2번째", "3번째", "4번째"];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      data: [10, 20, 30, 40],
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-  ],
-};
-
-const AnalChart = () => {
-  return <Bar options={options} data={data} />;
-};
-
-export default AnalChart;
+const labels = [
+  "변경시 승리",
+  "변경시 패배",
+  "미 변경시 승리",
+  "미변경시 패배",
+];

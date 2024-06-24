@@ -25,15 +25,21 @@ export const useSimulationStore = create<Store>((set) => ({
 }));
 
 type Score = {
-  score: number;
-  setScore: (score: number) => void;
-  changedScore: number;
-  setChangedScore: (changedScore: number) => void;
+  score: winOrLose;
+  setScore: (score: Partial<winOrLose>) => void;
+  changedScore: winOrLose;
+  setChangedScore: (changedScore: Partial<winOrLose>) => void;
 };
 
 export const useScoreStore = create<Score>((set) => ({
-  score: 0,
-  setScore: (score) => set({ score }),
-  changedScore: 0,
-  setChangedScore: (changedScore) => set({ changedScore }),
+  score: { win: 0, lose: 0 },
+  setScore: (newScore) =>
+    set((state) => ({
+      score: { ...state.score, ...newScore },
+    })),
+  changedScore: { win: 0, lose: 0 },
+  setChangedScore: (newScore) =>
+    set((state) => ({
+      changedScore: { ...state.changedScore, ...newScore },
+    })),
 }));
