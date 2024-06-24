@@ -31,4 +31,11 @@ const startAlert = () => {
   });
 };
 
-export { insertAlert, readyAlert, startAlert };
+const endAlert = () => {
+  toast.success("시뮬레이션 완료! 결과를 확인하세요", {
+    icon: () => "✅",
+    ...commonOptions,
+  });
+};
+
+export { endAlert, insertAlert, readyAlert, startAlert };

@@ -5,6 +5,7 @@ import {
 } from "@/app/constants/simulate";
 import { useScoreStore, useSimulationStore } from "@/app/store/useStore";
 import Analystic from "@/app/ui/Icons/Analystic";
+import { endAlert } from "@/app/utils/toast";
 import { useEffect, useState } from "react";
 import Button from "../../common/Button";
 import Door from "../../common/Door";
@@ -79,12 +80,15 @@ const SimulateContainer = () => {
     setIsEnd(false);
     setIsCorrect(false);
     setSelection(SELECTION_INIT);
-    if (options.turns > 0 || Number.isNaN(options.turns)) {
+    if (options.turns > 1 || Number.isNaN(options.turns)) {
       setOptions({ turns: options.turns - 1 });
       setDoors(initDoors);
       setRevealedDoors(initDoors);
       const winningIdx = Math.floor(Math.random() * doorCnt);
       setWinningIndex(winningIdx);
+    } else {
+      setOptions({ turns: options.turns - 1 });
+      endAlert();
     }
   };
 
