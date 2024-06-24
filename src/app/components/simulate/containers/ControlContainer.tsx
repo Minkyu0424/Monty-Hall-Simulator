@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Button from "../../common/Button";
 import DropDown from "../../common/Dropdown";
 import Input from "../../common/Input";
+import ScoreBox from "../ScoreBox";
 
 const ControlContainer = () => {
   const [isSelected, setIsSelected] = useState(false);
@@ -38,10 +39,10 @@ const ControlContainer = () => {
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center flex-col mt-10">
+    <div className="w-full h-full flex items-center justify-center flex-col mt-4">
       <ToastContainer />
       {isStart ? (
-        <div className="h-[120px]">지금은 직관 중.....</div>
+        <ScoreBox />
       ) : (
         <div className="flex gap-x-8 h-[160px]">
           <div className="flex flex-col gap-y-6">

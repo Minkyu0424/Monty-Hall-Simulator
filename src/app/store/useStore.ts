@@ -26,14 +26,14 @@ export const useSimulationStore = create<Store>((set) => ({
 
 type Score = {
   score: number;
-  setCorrect: (correct: number) => void;
+  setScore: (score: number) => void;
   changedScore: number;
   setChangedScore: (changedScore: number) => void;
 };
 
 export const useScoreStore = create<Score>((set) => ({
   score: 0,
-  setCorrect: (score) => set({ score }),
+  setScore: (score) => set({ score }),
   changedScore: 0,
   setChangedScore: (changedScore) => set({ changedScore }),
 }));

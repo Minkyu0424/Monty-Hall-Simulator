@@ -3,14 +3,16 @@ import {
   DOOR_COUNTS,
   SELECTION_INIT,
 } from "@/app/constants/simulate";
-import { useSimulationStore } from "@/app/store/useStore";
+import { useScoreStore, useSimulationStore } from "@/app/store/useStore";
 import { useEffect, useState } from "react";
-import Door from "../../common/Door";
 import Button from "../../common/Button";
+import Door from "../../common/Door";
 
 const SimulateContainer = () => {
   const options = useSimulationStore((state) => state.options);
   const setOptions = useSimulationStore((state) => state.setOptions);
+  const score = useScoreStore((state) => state.score);
+  const setScore = useScoreStore((state) => state.setScore);
   const doorIndex = DOOR_COUNTS.indexOf(options.doorAmount);
   const doorCnt = DOOR_AMOUNT[doorIndex];
   const initDoors = Array(doorCnt).fill(false);
@@ -50,6 +52,7 @@ const SimulateContainer = () => {
         ...prev,
         hasChanged: index !== prev.initialDoor,
       }));
+      setScore(index === winningIndex ? score + 1 : score);
       const newRevealedDoors = Array(doorCnt).fill(true);
       setRevealedDoors(newRevealedDoors);
     }
@@ -98,15 +101,24 @@ const SimulateContainer = () => {
       <div className="w-full flex text-2xl text-black font-medium h-10">
         {isEnd ? (
           isCorrect ? (
-            <div className="">
+            <div className="flex">
               <div>정답!</div>
-              <Button onClickHandler={resetSimulate} title={"Next"} buttonStyle={"bg-white w-[180px] h-12"}/>
+              <Button
+                onClickHandler={resetSimulate}
+                title={"Next"}
+                buttonStyle={"bg-white w-[180px] h-12"}
+              />
               <div>{selection.hasChanged ? "변화O 성공~" : "변화X  성공!"}</div>
+              <div>맞춘개수 : {score}</div>
             </div>
           ) : (
             <div>
               <div>실패!</div>
-              <Button onClickHandler={resetSimulate} title={"Next"} buttonStyle={"bg-white w-[180px] h-12"}/>
+              <Button
+                onClickHandler={resetSimulate}
+                title={"Next"}
+                buttonStyle={"bg-white w-[180px] h-12"}
+              />
               <div>{selection.hasChanged ? "변화O  실패~" : "변화X 실패"}</div>
             </div>
           )
