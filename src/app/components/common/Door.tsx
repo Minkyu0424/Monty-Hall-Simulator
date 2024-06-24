@@ -25,7 +25,7 @@ const Door = ({ doorSize, isOpen, onClick, isStart, isCar,selected }: DoorProps)
       style={{ width: `${doorWidth}px`, height: `${doorHeight}px` }}
       className={`flex relative bg-[#E3CAA5] ${
         !isOpen && "hover:animate-wiggle cursor-pointer"
-      } ${selected&&'border-[3px] border-green-500' } rounded-xl items-center justify-center  shadow-xl text-black text-4xl`}
+      } ${selected&&'border-4 border-green-500' } rounded-xl items-center justify-center  shadow-xl text-black text-4xl`}
       onClick={!isOpen ? onClick : undefined}
     >
       {isOpen ? isCar ? <div>🚗</div> : <div>🐐</div> : <>❓</>}

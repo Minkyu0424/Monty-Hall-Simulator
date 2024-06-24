@@ -88,12 +88,11 @@ const ControlContainer = () => {
           </div>
         </div>
       )}
-
-      <div className="flex mt-12 gap-x-8">
+      <div className="flex mt-2 gap-x-8">
         <Button
           onClickHandler={startSimulate}
           title={"시작"}
-          buttonStyle={`bg-[#5ea615] w-[280px] h-16 ${
+          buttonStyle={`bg-[#5ea615] w-[280px] h-14 ${
             isStart || "hover:bg-[#87b45a] cursor-pointer"
           }`}
           disabled={isStart}
@@ -102,7 +101,7 @@ const ControlContainer = () => {
           disabled={!isStart}
           onClickHandler={resetSimulate}
           title={"초기화"}
-          buttonStyle={`text-[#000000] bg-[#f26b6b] w-[280px] h-16 ${
+          buttonStyle={`text-[#000000] bg-[#f26b6b] w-[280px] h-14 ${
             !isStart || "hover:bg-[#fca6a6] cursor-pointer"
           }`}
         />

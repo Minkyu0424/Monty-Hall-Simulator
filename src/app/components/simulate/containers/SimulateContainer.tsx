@@ -74,7 +74,7 @@ const SimulateContainer = () => {
 
   return (
     <div>
-      <div className="flex text-2xl text-black font-bold mb-2 justify-between px-3">
+      <div className="flex text-[22px] text-black font-bold mb-1 justify-between px-3">
         <div className="flex items-center">
           {Number.isNaN(options.turns)
             ? "자유모드 ∞"
@@ -82,10 +82,10 @@ const SimulateContainer = () => {
         </div>
         <div className="flex gap-x-3 items-center justify-center">
           <p>처음에 고른 문 :</p>
-          <div className="w-7 h-11 border-[3px] rounded-xl border-green-500"></div>
+          <div className="w-6 h-9 border-[3px] rounded-lg border-green-500"></div>
         </div>
       </div>
-      <div className="flex items-center justify-center w-[720px] h-[520px] bg-white border-[#e7e7e7] border-[5px] flex-wrap gap-x-3">
+      <div className="flex items-center justify-center w-[720px] h-[520px] bg-white px-2 rounded-xl flex-wrap gap-x-3">
         {doors.map((_, index) => (
           <Door
             selected={selection.initialDoor === index}
@@ -98,10 +98,10 @@ const SimulateContainer = () => {
           />
         ))}
       </div>
-      <div className="w-full flex text-xl text-black font-semibold h-10">
+      <div className="w-full flex text-xl text-black font-bold h-10">
         {isEnd ? (
           <div className="w-full h-full flex justify-between items-center px-4 mt-2">
-            <div className="flex  gap-x-4">
+            <div className="flex gap-x-2">
               {isCorrect ? "⭕ 정답!" : "❌ 오답!"}
               {/* <div>{selection.hasChanged ? "변화O 성공~" : "변화X  성공!"}</div> */}
               <div>총 성공 횟수 : {score}</div>
@@ -110,12 +110,21 @@ const SimulateContainer = () => {
               <Button
                 onClickHandler={resetSimulate}
                 title={"Next"}
-                buttonStyle={"bg-[#5ea615] w-[100px] h-10 text-white"}
+                buttonStyle={
+                  "bg-[#70b927] w-[100px] h-10 text-white hover:bg-[#5ea615]"
+                }
               />
             </div>
           </div>
         ) : (
-          <div></div>
+          <div className="flex w-full items-center h-10 mt-2 px-4 justify-between">
+            <div>통계</div>
+            <p>
+              {selection.initialDoor &&
+                isSelected &&
+                "👆 최종 선택을 해주세요!"}
+            </p>
+          </div>
         )}
       </div>
     </div>

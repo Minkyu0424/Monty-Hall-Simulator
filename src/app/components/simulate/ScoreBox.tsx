@@ -19,19 +19,19 @@ ChartJS.register(
   Legend
 );
 
-const labels = ["January", "February", "March"];
+const labels = ["January"];
 
 export const data = {
   labels,
   datasets: [
     {
       label: "Dataset 1",
-      data: [120, 199, 418],
+      data: [120],
       backgroundColor: "rgba(255, 99, 132, 0.5)",
     },
     {
       label: "Dataset 2",
-      data: [98, 129, 218],
+      data: [98],
       backgroundColor: "rgba(53, 162, 235, 0.5)",
     },
   ],
@@ -44,14 +44,13 @@ export const options = {
     },
     title: {
       display: true,
-      text: "Chart.js Bar Chart",
+      text: "성공 현황 통계",
     },
   },
 };
 const ScoreBox = () => {
   return (
-    <div className="w-[720px] h-[160px] border border-black ">
-      <div className="flex text-2xl font-semibold text-black">통계</div>
+    <div className="w-[720px] h-[180px] border-[#000000] rounded-xl bg-white px-2 mb-2">
       <Bar options={options} data={data} />
     </div>
   );
