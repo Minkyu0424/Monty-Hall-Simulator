@@ -44,7 +44,7 @@ const ControlContainer = () => {
       {isStart ? (
         <ScoreBox />
       ) : (
-        <div className="flex gap-x-8 h-[160px]">
+        <div className="flex gap-x-8 h-[160px] mt-6">
           <div className="flex flex-col gap-y-6">
             <DropDown
               options={DOOR_COUNTS}
