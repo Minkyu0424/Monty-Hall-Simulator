@@ -1,3 +1,5 @@
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FMinkyu0424%2FMonty-Hall-Simulator&count_bg=%23FFBD26&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+
 # 몬티 홀 문제 시뮬레이션 레포지토리
 
 이 레포지토리는 유명한 확률 문제인 몬티 홀 문제(Monty Hall Problem)를 TypeScript와 Next.js를 사용하여 시뮬레이션하고 결과를 분석하는 프로젝트입니다. 이 시뮬레이션을 통해 몬티 홀 문제의 직관적인 이해를 돕고, 수학적 확률을 체험해 볼 수 있습니다.
